@@ -1,0 +1,7 @@
+<modules>
+    <module>config-server</module>
+    <module>eurka-server</module>
+    <module>api-gateway</module>
+    <module>auth-service</module>
+    <module>restaurant-service</module>
+</modules>
