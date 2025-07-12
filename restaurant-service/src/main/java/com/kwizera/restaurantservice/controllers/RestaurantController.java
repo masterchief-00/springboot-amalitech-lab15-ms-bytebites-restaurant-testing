@@ -8,6 +8,8 @@ import com.kwizera.restaurantservice.domain.mappers.EntityToDTO;
 import com.kwizera.restaurantservice.exceptions.UnauthorizedAccessException;
 import com.kwizera.restaurantservice.services.RestaurantServices;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,11 +25,13 @@ import java.util.stream.Collectors;
 @RequestMapping("/restaurant")
 public class RestaurantController {
     private final RestaurantServices restaurantServices;
+    private static final Logger logger = LoggerFactory.getLogger(RestaurantController.class);
 
     @GetMapping
     public ResponseEntity<List<RestaurantDTO>> getAllRestaurants() {
         List<Restaurant> restaurants = restaurantServices.getRestaurants();
 
+        logger.info("Retrieved " + restaurants.size() + " restaurant(s)");
         return new ResponseEntity<>(
                 restaurants.stream().map(
                         EntityToDTO::restaurantEntityToDto
@@ -72,7 +76,7 @@ public class RestaurantController {
                 .build();
 
         Restaurant createdRestaurant = restaurantServices.create(restaurant);
-
+        logger.info("Restaurant <" + createdRestaurant.getName() + "> has been created");
         return new ResponseEntity<>(EntityToDTO.restaurantEntityToDto(createdRestaurant), HttpStatus.CREATED);
 
     }
