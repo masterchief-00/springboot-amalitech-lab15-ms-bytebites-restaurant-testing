@@ -4,11 +4,10 @@ server:
 spring:
   application:
     name: config-server
-  profiles:
-    active: native
   cloud:
     config:
       server:
-        native:
-          search-locations: file:///${user.dir}/../config-repo
-        bootstrap: true
+        git:
+          uri: https://github.com/masterchief-00/springboot-amalitech-lab15-ms-config-repo.git
+          clone-on-start: true
+          force-pull: true
