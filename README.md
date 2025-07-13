@@ -1,7 +1,13 @@
-# LAB: ByteBites Restaurant
+# LAB: ByteBites Restaurant - Testing & Review
 
 ## Overview
 This is a microservices-based restaurant management system designed using Spring Cloud. It includes centralized configuration, service discovery, an API gateway, and modular services for handling authentication, orders, menus, and more.
+
+## ⚠️ What changed
+- The config-repo is now a standalone git repository
+- Added improved logging in the `Restaurant service`
+- Unit tests and Integration tests for the `Restaurant service`
+- `Resilience4j` integration allowing retry and fallback capabilities for synchronous calls between `Order service`,`Auth service` and `Restaurant service`
 
 ## ✅ Services Implemented
 
@@ -55,6 +61,7 @@ This is a microservices-based restaurant management system designed using Spring
 - Spring Cloud Config
 - Spring Cloud Netflix Eureka
 - Spring Cloud Gateway
+- Resilience4J
 - JWT for authentication
 - PostgreSQL
 - RabbitMQ
@@ -69,7 +76,6 @@ Make sure to:
 
 ## 🗂️ Repository Structure (Monorepo)
 ```root/
-├── config-repo/ # YAML config files per service
 ├── config-server/ # runs on 8888
 ├── eurka-server/ # runs on 8761
 ├── api-gateway/ # runs on 8080
@@ -81,5 +87,4 @@ Make sure to:
 ```
 
 ## 📝 Notes
-- Config changes in `config-repo` require a restart of `config-server` and dependent services
 - There are no `.env` files used in any of the services. Environment variables are being added within the IDE
