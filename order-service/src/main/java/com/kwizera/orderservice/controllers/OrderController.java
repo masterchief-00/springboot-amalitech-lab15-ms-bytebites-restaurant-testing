@@ -42,6 +42,9 @@ public class OrderController {
         Long clientId = Long.parseLong(userId);
         OrderDTO order = orderServices.createOrder(orderDetails, clientId, authHeader);
 
+
+        System.out.println("HEHEHEE " + order.restaurant());
+
         OrderPlacedEvent event = OrderPlacedEvent.builder()
                 .id(order.id())
                 .client(order.customer())
